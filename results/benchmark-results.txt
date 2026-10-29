@@ -1,0 +1,34 @@
+# Synchronization Mechanisms Benchmark Results
+
+**Workload:** 10,000,000 shared-counter increments  
+**Thread counts:** 1, 2, 4, and 8  
+**Environment:** Ubuntu running in VMware Workstation on the college PC  
+**Timing unit:** Seconds
+
+| Mechanism | Threads | Final Count | Correctness | Time (s) |
+|---|---:|---:|---|---:|
+| None | 1 | 10,000,000 | Correct | 0.0069 |
+| Critical | 1 | 10,000,000 | Correct | 0.1283 |
+| Atomic | 1 | 10,000,000 | Correct | 0.0693 |
+| Lock | 1 | 10,000,000 | Correct | 0.1163 |
+| None | 2 | 5,220,657 | Incorrect | 0.0133 |
+| Critical | 2 | 10,000,000 | Correct | 0.2595 |
+| Atomic | 2 | 10,000,000 | Correct | 0.1484 |
+| Lock | 2 | 10,000,000 | Correct | 0.4650 |
+| None | 4 | 7,279,449 | Incorrect | 0.0086 |
+| Critical | 4 | 10,000,000 | Correct | 0.3339 |
+| Atomic | 4 | 10,000,000 | Correct | 0.1624 |
+| Lock | 4 | 10,000,000 | Correct | 0.4867 |
+| None | 8 | 2,469,491 | Incorrect | 0.0103 |
+| Critical | 8 | 10,000,000 | Correct | 0.3369 |
+| Atomic | 8 | 10,000,000 | Correct | 0.1757 |
+| Lock | 8 | 10,000,000 | Correct | 0.4856 |
+
+## Observations
+
+- **None:** No synchronization overhead, but shared updates were lost in multithreaded runs.
+- **Critical:** Correct results, with increasing execution time as contention grows.
+- **Atomic:** Correct results and lower execution time than Critical and Lock in these measurements.
+- **Lock:** Correct results, but comparatively high synchronization overhead.
+
+These timings are measurements from one environment and may vary on other machines. The barrier and semaphore programs are separate demonstrations and are not included in this four-mechanism timing table.

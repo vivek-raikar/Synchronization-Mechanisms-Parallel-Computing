@@ -1,0 +1,16 @@
+
+# Compiled C executables
+race
+critical
+atomic
+barrier
+semaphore
+compare_sync
+
+# Object files
+*.o
+
+# Editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db
